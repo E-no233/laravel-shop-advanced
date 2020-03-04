@@ -87,7 +87,7 @@ class Category extends Model
         // trim($str, '-') 将字符串两端的 - 符号去除
         // explode() 将字符串以 - 为分隔切割为数组
         // 最后 array_filter 将数组中的空值移除
-        return array_fill(explode('-', time($this->path, '-')));
+        return array_filter(explode('-', trim($this->path, '-')));
     }
 
     // 定义一个访问器，获取所有祖先类目并按层级排序
