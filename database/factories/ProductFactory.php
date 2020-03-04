@@ -6,7 +6,7 @@ use App\Models\Product;
 use Faker\Generator as Faker;
 
 $factory->define(Product::class, function (Faker $faker) {
-    $image = $faker->randomElement([
+    $image    = $faker->randomElement([
         "https://iocaffcdn.phphub.org/uploads/images/201806/01/5320/7kG1HekGK6.jpg",
         "https://iocaffcdn.phphub.org/uploads/images/201806/01/5320/1B3n0ATKrn.jpg",
         "https://iocaffcdn.phphub.org/uploads/images/201806/01/5320/r3BNRe4zXG.jpg",
@@ -18,6 +18,7 @@ $factory->define(Product::class, function (Faker $faker) {
         "https://iocaffcdn.phphub.org/uploads/images/201806/01/5320/2JMRaFwRpo.jpg",
         "https://iocaffcdn.phphub.org/uploads/images/201806/01/5320/pa7DrV43Mw.jpg",
     ]);
+    $category_id = \App\Models\Category::query()->where('is_directory', false)->inRandomOrder()->first(['id']);
 
     return [
         'title'        => $faker->word,
@@ -28,5 +29,6 @@ $factory->define(Product::class, function (Faker $faker) {
         'sold_count'   => 0,
         'review_count' => 0,
         'price'        => 0,
+        'category_id'  => $category_id ?: null
     ];
 });
