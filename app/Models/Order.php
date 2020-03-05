@@ -54,18 +54,26 @@ use Ramsey\Uuid\Uuid;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereUserId($value)
  * @mixin \Eloquent
+ * @property string $type
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereType($value)
  */
 class Order extends Model
 {
+    // 退款状态
     const REFUND_STATUS_PENDING = 'pending';
     const REFUND_STATUS_APPLIED = 'applied';
     const REFUND_STATUS_PROCESSING = 'processing';
     const REFUND_STATUS_SUCCESS = 'success';
     const REFUND_STATUS_FAILED = 'failed';
 
+    // 发货状态
     const SHIP_STATUS_PENDING = 'pending';
     const SHIP_STATUS_DELIVERED = 'delivered';
     const SHIP_STATUS_RECEIVED = 'received';
+
+    // 订单类型
+    const TYPE_NORMAL = 'normal';
+    const TYPE_CROWDFUNDING = 'crowdfunding';
 
     public static $refundStatusMap = [
         self::REFUND_STATUS_PENDING    => '未退款',
@@ -79,6 +87,11 @@ class Order extends Model
         self::SHIP_STATUS_PENDING   => '未发货',
         self::SHIP_STATUS_DELIVERED => '已发货',
         self::SHIP_STATUS_RECEIVED  => '已收货',
+    ];
+
+    public static $typeMap = [
+        self::TYPE_NORMAL => '普通商品订单',
+        self::TYPE_CROWDFUNDING => '众筹商品订单',
     ];
 
     protected $fillable = [
@@ -96,6 +109,7 @@ class Order extends Model
         'ship_status',
         'ship_data',
         'extra',
+        'type'
     ];
 
     protected $casts = [
