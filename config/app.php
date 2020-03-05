@@ -228,5 +228,6 @@ return [
 
     ],
 
-    'order_ttl' => 1800,
+    'order_ttl' => 1800, // 订单关闭时间
+    'ngrok_url' => env('NGROK_URL'), // 公网地址
 ];
