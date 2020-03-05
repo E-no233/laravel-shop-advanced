@@ -40,6 +40,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class UserAddress extends Model
 {
+    protected $appends = ['full_address'];
     protected $fillable = [
         'province',
         'city',
