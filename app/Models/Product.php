@@ -39,6 +39,10 @@ use Illuminate\Support\Str;
  * @mixin \Eloquent
  * @property int|null $category_id
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereCategoryId($value)
+ * @property string $type
+ * @property-read \App\Models\Category|null $category
+ * @property-read \App\Models\CrowdfundingProduct $crowdfunding
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Product whereType($value)
  */
 class Product extends Model
 {
